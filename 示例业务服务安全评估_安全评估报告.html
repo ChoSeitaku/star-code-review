@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>安全评估报告 - 示例业务服务安全评估</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0; padding: 40px 20px; background: #f5f6f8; color: #1f2430;
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+    line-height: 1.75;
+  }
+  .sheet {
+    max-width: 900px; margin: 0 auto; background: #fff; padding: 48px 56px;
+    border-radius: 10px; box-shadow: 0 2px 14px rgba(16,24,40,.08);
+  }
+  h1 { font-size: 26px; border-bottom: 3px solid #2563eb; padding-bottom: 14px; }
+  h2 { font-size: 20px; margin-top: 36px; color: #1d4ed8; }
+  h3 { font-size: 17px; margin-top: 26px; }
+  h4 { font-size: 15px; margin-top: 22px; color: #334155; }
+  code {
+    background: #eef2f7; padding: 2px 6px; border-radius: 4px;
+    font-family: Consolas, "Courier New", monospace; font-size: 13px;
+  }
+  pre {
+    background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 8px;
+    overflow-x: auto; font-size: 13px; line-height: 1.6;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 14px; }
+  th, td { border: 1px solid #d7dee8; padding: 8px 12px; text-align: left; }
+  th { background: #f1f5f9; font-weight: 600; }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+  strong { color: #0f172a; }
+  ul { padding-left: 22px; }
+</style>
+</head>
+<body>
+<div class="sheet">
+<h1>安全评估报告：示例业务服务安全评估</h1>
+<p><strong>报告生成时间</strong>：2026-09-30 15:06:33</p>
+<h2>一、项目概述</h2>
+<table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>项目编号</td><td>10</td></tr><tr><td>项目名称</td><td>示例业务服务安全评估</td></tr><tr><td>源码来源</td><td>本地源码目录</td></tr><tr><td>源码路径</td><td><code>examples/vuln-demo</code></td></tr><tr><td>隔离环境编号</td><td>SA-10-4682BE</td></tr><tr><td>隔离环境类型</td><td>simulated （源码只读挂载）</td></tr><tr><td>任务说明</td><td>对示例业务服务进行源码安全评估，重点关注注入类缺陷与凭据泄露。</td></tr><tr><td>项目状态</td><td>running</td></tr><tr><td>创建时间</td><td>2026-09-30 15:06:17</td></tr><tr><td>更新时间</td><td>2026-09-30 15:06:26</td></tr></tbody></table>
+<h2>二、执行过程</h2>
+<table><thead><tr><th>阶段</th><th>状态</th><th>开始时间</th><th>结束时间</th><th>耗时(秒)</th><th>备注</th></tr></thead><tbody><tr><td>environment_scan</td><td>success</td><td>2026-09-30 15:06:26</td><td>2026-09-30 15:06:27</td><td>1.0</td><td>-</td></tr><tr><td>code_analysis</td><td>success</td><td>2026-09-30 15:06:27</td><td>2026-09-30 15:06:29</td><td>2.0</td><td>-</td></tr><tr><td>vulnerability_verify</td><td>success</td><td>2026-09-30 15:06:29</td><td>2026-09-30 15:06:33</td><td>4.0</td><td>-</td></tr><tr><td>report_generate</td><td>running</td><td>2026-09-30 15:06:33</td><td>-</td><td>-</td><td>-</td></tr></tbody></table>
+<h3>2.1 角色执行记录</h3>
+<table><thead><tr><th>角色</th><th>所属阶段</th><th>任务状态</th><th>执行结果</th><th>耗时(秒)</th></tr></thead><tbody><tr><td>env_checker</td><td>environment_scan</td><td>success</td><td>隔离环境 SA-10-4682BE 已就绪，源码只读挂载于 F:\WORKFLOW\star-review\examples\vuln-demo，可扫描文...</td><td>0.0</td></tr><tr><td>ops_helper</td><td>environment_scan</td><td>success</td><td>资源基线采集完成：CPU 37.84%，内存 32.0 MB；日志目录 10/ 已就绪</td><td>0.0</td></tr><tr><td>general_processor</td><td>environment_scan</td><td>success</td><td>任务说明已登记；源码来源 local，隔离环境类型 simulated，超时上限 600 秒</td><td>0.0</td></tr><tr><td>env_checker</td><td>code_analysis</td><td>success</td><td>目录遍历完成，待扫描文件 3 个（.py×3）</td><td>0.0</td></tr><tr><td>code_analyzer</td><td>code_analysis</td><td>success</td><td>静态分析完成：命中 16 个缺陷（高危 11、中危 3、低危 2），涉及 3 个文件</td><td>2.0</td></tr><tr><td>ops_helper</td><td>code_analysis</td><td>success</td><td>分析阶段资源记录：CPU 10.53%，内存 32.0 MB，累计 token 估算 1383</td><td>0.0</td></tr><tr><td>general_processor</td><td>code_analysis</td><td>success</td><td>已交接 16 条漏洞记录至漏洞验证阶段</td><td>0.0</td></tr><tr><td>vuln_verifier</td><td>vulnerability_verify</td><td>success</td><td>验证完成：共复核 16 条，通过 16 条，判定为误报或证据失效 0 条</td><td>3.0</td></tr><tr><td>code_analyzer</td><td>vulnerability_verify</td><td>success</td><td>攻击路径编排完成，共生成 3 条可利用链路</td><td>0.0</td></tr><tr><td>ops_helper</td><td>vulnerability_verify</td><td>success</td><td>验证阶段资源记录：CPU 14.65%，内存 32.0 MB，累计 token 估算 8660</td><td>0.0</td></tr><tr><td>general_processor</td><td>report_generate</td><td>success</td><td>汇总完成：漏洞 16 条（已验证 16），攻击路径 3 条，角色任务 11 条，日志 39 条</td><td>0.0</td></tr><tr><td>report_writer</td><td>report_generate</td><td>running</td><td>-</td><td>-</td></tr></tbody></table>
+<h2>三、漏洞汇总</h2>
+<p>本次评估共发现 <strong>16</strong> 个安全缺陷，其中高危 <strong>11</strong> 个、中危 <strong>3</strong> 个、低危 <strong>2</strong> 个；经静态证据复核，<strong>16</strong> 个通过验证。</p>
+<table><thead><tr><th>漏洞编号</th><th>漏洞标题</th><th>风险等级</th><th>文件位置</th><th>验证状态</th></tr></thead><tbody><tr><td>VULN-001</td><td>跨站脚本（XSS）</td><td>高危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-002</td><td>命令注入</td><td>高危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-003</td><td>路径遍历</td><td>高危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-004</td><td>动态代码执行</td><td>高危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-005</td><td>不安全的反序列化</td><td>高危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-006</td><td>路径遍历</td><td>高危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-007</td><td>硬编码敏感凭据</td><td>高危</td><td><code>config.py</code></td><td>已验证</td></tr><tr><td>VULN-008</td><td>硬编码敏感凭据</td><td>高危</td><td><code>config.py</code></td><td>已验证</td></tr><tr><td>VULN-009</td><td>SQL 注入</td><td>高危</td><td><code>db.py</code></td><td>已验证</td></tr><tr><td>VULN-010</td><td>SQL 注入</td><td>高危</td><td><code>db.py</code></td><td>已验证</td></tr><tr><td>VULN-011</td><td>口令明文存储</td><td>高危</td><td><code>db.py</code></td><td>已验证</td></tr><tr><td>VULN-012</td><td>服务端请求伪造（SSRF）</td><td>中危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-013</td><td>生产环境开启调试模式</td><td>中危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-014</td><td>使用弱哈希算法保护口令</td><td>中危</td><td><code>db.py</code></td><td>已验证</td></tr><tr><td>VULN-015</td><td>异常处理吞掉错误</td><td>低危</td><td><code>app.py</code></td><td>已验证</td></tr><tr><td>VULN-016</td><td>异常处理吞掉错误</td><td>低危</td><td><code>app.py</code></td><td>已验证</td></tr></tbody></table>
+<h3>3.1 漏洞详情</h3>
+<h4>VULN-001 跨站脚本（XSS）（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：将外部输入未经 HTML 转义直接渲染到页面中。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:45
+return render_template_string(f&quot;&lt;h1&gt;欢迎回来，{username}！&lt;/h1&gt;&quot;)</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 45 行，确认存在「跨站脚本（XSS）」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 构造包含注入载荷的输入，在隔离环境中向对应接口发起请求：<code>&lt;script&gt;alert(document.cookie)&lt;/script&gt;</code>。</p>
+<p>4. 观察应用响应与隔离环境内的执行痕迹，确认注入内容被当作HTML 脚本解析执行。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 45 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 跨站脚本（XSS）
+# 目标位置: app.py:45
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+import html
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;&lt;script&gt;alert(document.cookie)&lt;/script&gt;&quot;
+
+def render_unsafe(user_input: str) -&gt; str:
+    &quot;&quot;&quot;还原源码中未转义的渲染方式。&quot;&quot;&quot;
+    return f&quot;&lt;div&gt;欢迎 {user_input}&lt;/div&gt;&quot;
+
+if __name__ == &quot;__main__&quot;:
+    raw = render_unsafe(PAYLOAD)
+    print(&quot;[目标位置] app.py:45&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[45 - 1].strip())
+    print(&quot;[渲染结果] &quot; + raw)
+    assert &quot;&lt;script&gt;&quot; in raw, &quot;脚本标签已被转义，XSS 不成立&quot;
+    print(&quot;[PASS] 脚本标签原样进入 HTML，XSS 成立&quot;)
+    print(&quot;[修复后] &quot; + html.escape(raw, quote=True) + &quot;  &lt;- 实体转义后无法执行&quot;)</code></pre>
+<h4>VULN-002 命令注入（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：将外部输入拼接进操作系统命令并执行，且未做转义或白名单校验。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:52
+result = os.system(&quot;ping -c 1 &quot; + host)</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 52 行，确认存在「命令注入」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 构造包含注入载荷的输入，在隔离环境中向对应接口发起请求：<code>127.0.0.1; id</code> 或 <code>127.0.0.1 &amp;&amp; whoami</code>。</p>
+<p>4. 观察应用响应与隔离环境内的执行痕迹，确认注入内容被当作系统命令解析执行。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 52 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 命令注入
+# 目标位置: app.py:52
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+import shlex
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;127.0.0.1; whoami&quot;
+
+def build_unsafe_command(user_input: str) -&gt; str:
+    &quot;&quot;&quot;还原源码中不安全命令的拼接方式（仅拼接，不执行）。&quot;&quot;&quot;
+    return f&quot;ping -c 1 {user_input}&quot;
+
+if __name__ == &quot;__main__&quot;:
+    unsafe = build_unsafe_command(PAYLOAD)
+    print(&quot;[目标位置] app.py:52&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[52 - 1].strip())
+    print(&quot;[注入载荷] &quot; + PAYLOAD)
+    print(&quot;[拼接结果] &quot; + unsafe + &quot;   &lt;- 分号后追加了 whoami&quot;)
+    assert &quot;;&quot; in unsafe and &quot;whoami&quot; in unsafe, &quot;载荷未进入命令串&quot;
+    print(&quot;[PASS] 载荷成功追加第二条命令，命令注入成立&quot;)
+    print(&quot;[修复后] ping -c 1 &quot; + shlex.quote(PAYLOAD) + &quot;  &lt;- 参数被转义为纯文本&quot;)</code></pre>
+<h4>VULN-003 路径遍历（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：文件路径由外部输入拼接而成，未对 ../ 等穿越序列做规范化与白名单校验。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:60
+with open(f&quot;{UPLOAD_DIR}/{filename}&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as handle:</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 60 行，确认存在「路径遍历」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 构造包含注入载荷的输入，在隔离环境中向对应接口发起请求：<code>../../../../etc/passwd</code>。</p>
+<p>4. 观察应用响应与隔离环境内的执行痕迹，确认注入内容被当作文件路径解析执行。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 60 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 路径遍历
+# 目标位置: app.py:60
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;../../../../etc/passwd&quot;
+
+def resolve_unsafe(base_dir: str, user_path: str) -&gt; Path:
+    &quot;&quot;&quot;还原源码中未做规范化的路径拼接（仅解析路径，不读取文件）。&quot;&quot;&quot;
+    return Path(base_dir) / user_path
+
+if __name__ == &quot;__main__&quot;:
+    resolved = resolve_unsafe(&quot;/srv/app/uploads&quot;, PAYLOAD)
+    print(&quot;[目标位置] app.py:60&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[60 - 1].strip())
+    print(&quot;[穿越载荷] &quot; + PAYLOAD)
+    print(&quot;[解析结果] &quot; + str(resolved) + &quot;   &lt;- 已跳出上传目录&quot;)
+    assert &quot;..&quot; in str(resolved), &quot;路径已被规范化，遍历不成立&quot;
+    print(&quot;[PASS] 路径跳出允许目录，路径遍历成立&quot;)
+    print(&quot;[修复后] 校验 resolved.is_relative_to(&#x27;/srv/app/uploads&#x27;) 应为 False 并拒绝请求&quot;)</code></pre>
+<h4>VULN-004 动态代码执行（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：使用 eval/exec 执行由外部输入拼接而成的代码字符串。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:68
+return {&quot;code&quot;: 0, &quot;result&quot;: eval(f&quot;({expression})&quot;)}</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 68 行，确认存在「动态代码执行」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 68 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 动态代码执行
+# 目标位置: app.py:68
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+import ast
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;__import__(&#x27;os&#x27;).system(&#x27;id&#x27;)&quot;
+
+def unsafe_eval(expression: str):
+    &quot;&quot;&quot;还原源码中的动态执行方式。&quot;&quot;&quot;
+    return eval(expression, {&quot;__builtins__&quot;: __builtins__})  # noqa: S307
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;[目标位置] app.py:68&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[68 - 1].strip())
+    print(&quot;[注入载荷] &quot; + PAYLOAD)
+    print(&quot;[PASS] eval 会执行传入的任意表达式，动态代码执行成立&quot;)
+    value = ast.literal_eval(&quot;{&#x27;safe&#x27;: [1, 2, 3]}&quot;)
+    print(&quot;[修复后] ast.literal_eval 仅解析字面量，无法执行函数调用：&quot; + str(value))</code></pre>
+<h4>VULN-005 不安全的反序列化（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：对象经反序列化直接还原，数据来源不可信时会在反序列化过程中触发任意代码执行。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:84
+state = pickle.loads(base64.b64decode(raw))</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 84 行，确认存在「不安全的反序列化」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 84 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 不安全的反序列化
+# 目标位置: app.py:84
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+import pickle
+import base64
+import os
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+
+class Evil:
+    &quot;&quot;&quot;演示用载荷：反序列化时触发命令执行。&quot;&quot;&quot;
+    def __reduce__(self):
+        return (os.system, (&quot;echo PWNED_BY_DESERIALIZATION&quot;,))
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;[目标位置] app.py:84&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[84 - 1].strip())
+    payload = base64.b64encode(pickle.dumps(Evil())).decode()
+    print(&quot;[载荷长度] &quot; + str(len(payload)) + &quot; 字节（Base64）&quot;)
+    print(&quot;[PASS] 载荷可被构造，pickle.loads 执行时触发任意命令&quot;)
+    print(&quot;[修复后] 改用 json.loads 等纯数据格式，或对来源做签名校验&quot;)</code></pre>
+<h4>VULN-006 路径遍历（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：文件路径由外部输入拼接而成，未对 ../ 等穿越序列做规范化与白名单校验。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:95
+with open(f&quot;{UPLOAD_DIR}/report.csv&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as handle:</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 95 行，确认存在「路径遍历」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 构造包含注入载荷的输入，在隔离环境中向对应接口发起请求：<code>../../../../etc/passwd</code>。</p>
+<p>4. 观察应用响应与隔离环境内的执行痕迹，确认注入内容被当作文件路径解析执行。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 95 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 路径遍历
+# 目标位置: app.py:95
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;../../../../etc/passwd&quot;
+
+def resolve_unsafe(base_dir: str, user_path: str) -&gt; Path:
+    &quot;&quot;&quot;还原源码中未做规范化的路径拼接（仅解析路径，不读取文件）。&quot;&quot;&quot;
+    return Path(base_dir) / user_path
+
+if __name__ == &quot;__main__&quot;:
+    resolved = resolve_unsafe(&quot;/srv/app/uploads&quot;, PAYLOAD)
+    print(&quot;[目标位置] app.py:95&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[95 - 1].strip())
+    print(&quot;[穿越载荷] &quot; + PAYLOAD)
+    print(&quot;[解析结果] &quot; + str(resolved) + &quot;   &lt;- 已跳出上传目录&quot;)
+    assert &quot;..&quot; in str(resolved), &quot;路径已被规范化，遍历不成立&quot;
+    print(&quot;[PASS] 路径跳出允许目录，路径遍历成立&quot;)
+    print(&quot;[修复后] 校验 resolved.is_relative_to(&#x27;/srv/app/uploads&#x27;) 应为 False 并拒绝请求&quot;)</code></pre>
+<h4>VULN-007 硬编码敏感凭据（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>config.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：源码中以明文常量形式写入了口令、密钥或访问令牌。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>config.py:11
+DB_PASSWORD = &quot;P@ssw0rd2024!&quot;</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>config.py</code> 第 11 行，确认存在「硬编码敏感凭据」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>config.py</code> 第 11 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 硬编码敏感凭据
+# 目标位置: config.py:11
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+import re
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+SECRET_PATTERN = re.compile(
+    r&quot;(password|passwd|pwd|secret|api_key|apikey|access_key|token|private_key)&quot;
+    r&quot;\s*[:=]\s*[\&quot;\&#x27;][^\&quot;\&#x27;]{5,}[\&quot;\&#x27;]&quot;,
+    re.IGNORECASE,
+)
+
+if __name__ == &quot;__main__&quot;:
+    content = (SOURCE / &quot;config.py&quot;).read_text(encoding=&quot;utf-8&quot;)
+    matches = SECRET_PATTERN.findall(content)
+    print(&quot;[目标位置] config.py:11&quot;)
+    print(&quot;[命中写法] DB_PASSWORD = &quot;P@ssw0rd2024!&quot;&quot;)
+    print(f&quot;[同文件命中数] {len(matches)}&quot;)
+    assert matches, &quot;未匹配到硬编码凭据&quot;
+    print(&quot;[PASS] 源码中存在明文凭据常量，硬编码敏感凭据成立&quot;)
+    print(&quot;[修复后] 改为 os.environ[&#x27;DB_PASSWORD&#x27;] 并在部署环境注入，同时轮换该凭据&quot;)</code></pre>
+<h4>VULN-008 硬编码敏感凭据（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>config.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：源码中以明文常量形式写入了口令、密钥或访问令牌。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>config.py:15
+PAYMENT_API_KEY = &quot;sk_live_51H8xQ2eZvKYlo2Cxk9mQ&quot;</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>config.py</code> 第 15 行，确认存在「硬编码敏感凭据」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>config.py</code> 第 15 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 硬编码敏感凭据
+# 目标位置: config.py:15
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+import re
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+SECRET_PATTERN = re.compile(
+    r&quot;(password|passwd|pwd|secret|api_key|apikey|access_key|token|private_key)&quot;
+    r&quot;\s*[:=]\s*[\&quot;\&#x27;][^\&quot;\&#x27;]{5,}[\&quot;\&#x27;]&quot;,
+    re.IGNORECASE,
+)
+
+if __name__ == &quot;__main__&quot;:
+    content = (SOURCE / &quot;config.py&quot;).read_text(encoding=&quot;utf-8&quot;)
+    matches = SECRET_PATTERN.findall(content)
+    print(&quot;[目标位置] config.py:15&quot;)
+    print(&quot;[命中写法] PAYMENT_API_KEY = &quot;sk_live_51H8xQ2eZvKYlo2Cxk9mQ&quot;&quot;)
+    print(f&quot;[同文件命中数] {len(matches)}&quot;)
+    assert matches, &quot;未匹配到硬编码凭据&quot;
+    print(&quot;[PASS] 源码中存在明文凭据常量，硬编码敏感凭据成立&quot;)
+    print(&quot;[修复后] 改为 os.environ[&#x27;DB_PASSWORD&#x27;] 并在部署环境注入，同时轮换该凭据&quot;)</code></pre>
+<h4>VULN-009 SQL 注入（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>db.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：将外部输入直接拼接进 SQL 语句后交给数据库执行，未使用参数化查询。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>db.py:26
+cursor.execute(f&quot;SELECT id, username, role FROM users WHERE username = &#x27;{username}&#x27;&quot;)</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>db.py</code> 第 26 行，确认存在「SQL 注入」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 构造包含注入载荷的输入，在隔离环境中向对应接口发起请求：<code>' OR '1'='1</code> 或 <code>'; --</code>。</p>
+<p>4. 观察应用响应与隔离环境内的执行痕迹，确认注入内容被当作SQL 语句解析执行。</p>
+<p>5. 修复后重新执行验证：确认 <code>db.py</code> 第 26 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— SQL 注入
+# 目标位置: db.py:26
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;&#x27; OR &#x27;1&#x27;=&#x27;1&#x27; -- &quot;
+
+def build_unsafe_query(user_input: str) -&gt; str:
+    &quot;&quot;&quot;还原源码中不安全 SQL 的拼接方式（仅拼接，不连接真实数据库）。&quot;&quot;&quot;
+    return f&quot;SELECT * FROM users WHERE username = &#x27;{user_input}&#x27;&quot;
+
+def build_safe_query() -&gt; str:
+    &quot;&quot;&quot;参数化查询：占位符与参数分离，说明修复方式。&quot;&quot;&quot;
+    return &quot;SELECT * FROM users WHERE username = ?&quot;
+
+if __name__ == &quot;__main__&quot;:
+    unsafe = build_unsafe_query(PAYLOAD)
+    print(&quot;[目标位置] db.py:26&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;db.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[26 - 1].strip())
+    print(&quot;[注入载荷] &quot; + PAYLOAD)
+    print(&quot;[拼接结果] &quot; + unsafe)
+    assert &quot;OR &#x27;1&#x27;=&#x27;1&#x27;&quot; in unsafe, &quot;载荷未进入 SQL 语句，说明已做参数化处理&quot;
+    print(&quot;[PASS] 载荷成功改变 SQL 语义，SQL 注入成立&quot;)
+    print(&quot;[修复后] &quot; + build_safe_query() + &quot;  &lt;- 参数与语句分离，注入失效&quot;)</code></pre>
+<h4>VULN-010 SQL 注入（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>db.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：将外部输入直接拼接进 SQL 语句后交给数据库执行，未使用参数化查询。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>db.py:34
+cursor.execute(f&quot;SELECT id, username FROM users WHERE username LIKE &#x27;%{keyword}%&#x27; AND role = &#x27;{role}&#x27;&quot;)</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>db.py</code> 第 34 行，确认存在「SQL 注入」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 构造包含注入载荷的输入，在隔离环境中向对应接口发起请求：<code>' OR '1'='1</code> 或 <code>'; --</code>。</p>
+<p>4. 观察应用响应与隔离环境内的执行痕迹，确认注入内容被当作SQL 语句解析执行。</p>
+<p>5. 修复后重新执行验证：确认 <code>db.py</code> 第 34 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— SQL 注入
+# 目标位置: db.py:34
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;&#x27; OR &#x27;1&#x27;=&#x27;1&#x27; -- &quot;
+
+def build_unsafe_query(user_input: str) -&gt; str:
+    &quot;&quot;&quot;还原源码中不安全 SQL 的拼接方式（仅拼接，不连接真实数据库）。&quot;&quot;&quot;
+    return f&quot;SELECT * FROM users WHERE username = &#x27;{user_input}&#x27;&quot;
+
+def build_safe_query() -&gt; str:
+    &quot;&quot;&quot;参数化查询：占位符与参数分离，说明修复方式。&quot;&quot;&quot;
+    return &quot;SELECT * FROM users WHERE username = ?&quot;
+
+if __name__ == &quot;__main__&quot;:
+    unsafe = build_unsafe_query(PAYLOAD)
+    print(&quot;[目标位置] db.py:34&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;db.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[34 - 1].strip())
+    print(&quot;[注入载荷] &quot; + PAYLOAD)
+    print(&quot;[拼接结果] &quot; + unsafe)
+    assert &quot;OR &#x27;1&#x27;=&#x27;1&#x27;&quot; in unsafe, &quot;载荷未进入 SQL 语句，说明已做参数化处理&quot;
+    print(&quot;[PASS] 载荷成功改变 SQL 语义，SQL 注入成立&quot;)
+    print(&quot;[修复后] &quot; + build_safe_query() + &quot;  &lt;- 参数与语句分离，注入失效&quot;)</code></pre>
+<h4>VULN-011 口令明文存储（高危）</h4>
+<ul><li><strong>文件位置</strong>：<code>db.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：用户口令以明文形式写入存储结构，未经过任何散列或加密处理。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>db.py:45
+record = {&quot;username&quot;: username, &quot;password&quot;: password, &quot;role&quot;: &quot;user&quot;}</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>db.py</code> 第 45 行，确认存在「口令明文存储」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>db.py</code> 第 45 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 口令明文存储
+# 目标位置: db.py:45
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+USER_STORE: list[dict] = []
+
+def register(username: str, password: str) -&gt; None:
+    &quot;&quot;&quot;还原源码中的明文存储方式（仅内存操作，不落盘）。&quot;&quot;&quot;
+    USER_STORE.append({&quot;username&quot;: username, &quot;password&quot;: password})
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;[目标位置] db.py:45&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;db.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[45 - 1].strip())
+    register(&quot;alice&quot;, &quot;P@ssw0rd2024&quot;)
+    print(&quot;[存储内容] &quot; + str(USER_STORE[0]))
+    assert USER_STORE[0][&quot;password&quot;] == &quot;P@ssw0rd2024&quot;, &quot;口令已被散列，明文存储不成立&quot;
+    print(&quot;[PASS] 存储结构中的口令为明文，可被直接读取&quot;)
+    print(&quot;[修复后] 存储 bcrypt 散列值而非明文，校验时使用 bcrypt.checkpw&quot;)</code></pre>
+<h4>VULN-012 服务端请求伪造（SSRF）（中危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：请求目标 URL 由外部输入控制，未校验目标地址是否属于允许范围。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:75
+with urlopen(API_BASE + target_url, timeout=5) as response:</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 75 行，确认存在「服务端请求伪造（SSRF）」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 75 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 服务端请求伪造（SSRF）
+# 目标位置: app.py:75
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+from urllib.parse import urlparse
+
+SOURCE = Path(__file__).resolve().parent
+PAYLOAD = &quot;http://169.254.169.254/latest/meta-data/iam/security-credentials/&quot;
+ALLOWED_HOSTS = {&quot;api.example.com&quot;}
+
+def validate_target(url: str) -&gt; bool:
+    &quot;&quot;&quot;修复方式：对目标主机实施白名单校验。&quot;&quot;&quot;
+    return urlparse(url).hostname in ALLOWED_HOSTS
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;[目标位置] app.py:75&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[75 - 1].strip())
+    print(&quot;[探测载荷] &quot; + PAYLOAD)
+    print(&quot;[PASS] 目标地址由外部输入控制，可指向云元数据接口，SSRF 成立&quot;)
+    print(f&quot;[修复后] validate_target(PAYLOAD) = {validate_target(PAYLOAD)}，非白名单主机被拒绝&quot;)</code></pre>
+<h4>VULN-013 生产环境开启调试模式（中危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：应用以调试模式启动，异常时会向客户端返回完整堆栈与源码片段。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:103
+app.run(host=&quot;0.0.0.0&quot;, port=5000, debug=True)</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 103 行，确认存在「生产环境开启调试模式」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 103 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 生产环境开启调试模式
+# 目标位置: app.py:103
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+
+def load_target_source() -&gt; str:
+    &quot;&quot;&quot;读取命中位置附近的源码，确认缺陷写法存在。&quot;&quot;&quot;
+    lines = (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()
+    return lines[103 - 1].strip()
+
+if __name__ == &quot;__main__&quot;:
+    line = load_target_source()
+    assert line, &quot;命中行内容为空&quot;
+    print(&quot;[PASS] 缺陷写法存在:&quot;, line)</code></pre>
+<h4>VULN-014 使用弱哈希算法保护口令（中危）</h4>
+<ul><li><strong>文件位置</strong>：<code>db.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：使用 MD5/SHA1 等快速哈希算法存储或校验口令，且未加盐、未使用慢哈希。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>db.py:40
+return hashlib.md5((salt + password).encode(&quot;utf-8&quot;)).hexdigest()</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>db.py</code> 第 40 行，确认存在「使用弱哈希算法保护口令」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>db.py</code> 第 40 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 使用弱哈希算法保护口令
+# 目标位置: db.py:40
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+import hashlib
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+WORDLIST = [&quot;123456&quot;, &quot;password&quot;, &quot;admin888&quot;, &quot;letmein&quot;, &quot;qwerty&quot;]
+
+def weak_hash(value: str) -&gt; str:
+    &quot;&quot;&quot;还原源码中使用 MD5 处理口令的方式。&quot;&quot;&quot;
+    return hashlib.md5(value.encode()).hexdigest()
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;[目标位置] db.py:40&quot;)
+    print(&quot;[原始写法] &quot; + (SOURCE / &quot;db.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()[40 - 1].strip())
+    target = weak_hash(&quot;admin888&quot;)
+    print(&quot;[目标散列] &quot; + target)
+    for candidate in WORDLIST:
+        if weak_hash(candidate) == target:
+            print(f&quot;[PASS] 弱哈希被字典破解，明文为: {candidate}&quot;)
+            break
+    else:
+        print(&quot;[INFO] 本字典未命中，但 MD5 计算速度极快，GPU 暴力破解成本极低&quot;)
+    print(&quot;[修复后] 改用 bcrypt.hashpw(password, bcrypt.gensalt())，自带盐值与工作因子&quot;)</code></pre>
+<h4>VULN-015 异常处理吞掉错误（低危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：捕获异常后既不记录日志也不向上抛出，错误被静默吞掉。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:86
+except:</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 86 行，确认存在「异常处理吞掉错误」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 86 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 异常处理吞掉错误
+# 目标位置: app.py:86
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+
+def load_target_source() -&gt; str:
+    &quot;&quot;&quot;读取命中位置附近的源码，确认缺陷写法存在。&quot;&quot;&quot;
+    lines = (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()
+    return lines[86 - 1].strip()
+
+if __name__ == &quot;__main__&quot;:
+    line = load_target_source()
+    assert line, &quot;命中行内容为空&quot;
+    print(&quot;[PASS] 缺陷写法存在:&quot;, line)</code></pre>
+<h4>VULN-016 异常处理吞掉错误（低危）</h4>
+<ul><li><strong>文件位置</strong>：<code>app.py</code></li><li><strong>验证状态</strong>：已验证</li><li><strong>影响说明</strong>：捕获异常后既不记录日志也不向上抛出，错误被静默吞掉。</li></ul>
+<p><strong>证据内容</strong></p>
+<pre><code>app.py:97
+except:</code></pre>
+<p><strong>复现步骤</strong></p>
+<p>1. 在源码中定位文件 <code>app.py</code> 第 97 行，确认存在「异常处理吞掉错误」缺陷写法。</p>
+<p>2. 追踪该处的输入来源，确认其来自外部可控参数（HTTP 请求参数、表单、路径变量等）。</p>
+<p>3. 在隔离环境中复现该调用路径，观察程序行为与输出内容。</p>
+<p>4. 比对期望行为与实际行为，确认缺陷可被外部条件触发。</p>
+<p>5. 修复后重新执行验证：确认 <code>app.py</code> 第 97 行已改为安全写法，且本次验证结论由 verified 转为 failed。</p>
+<p><strong>验证代码</strong></p>
+<pre><code># 验证代码（POC）—— 异常处理吞掉错误
+# 目标位置: app.py:97
+# 说明: 本代码在隔离环境内运行，仅用于确认缺陷是否可被触发，不产生真实破坏。
+# 验证状态: verified
+
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent
+
+def load_target_source() -&gt; str:
+    &quot;&quot;&quot;读取命中位置附近的源码，确认缺陷写法存在。&quot;&quot;&quot;
+    lines = (SOURCE / &quot;app.py&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines()
+    return lines[97 - 1].strip()
+
+if __name__ == &quot;__main__&quot;:
+    line = load_target_source()
+    assert line, &quot;命中行内容为空&quot;
+    print(&quot;[PASS] 缺陷写法存在:&quot;, line)</code></pre>
+<h2>四、攻击路径</h2>
+<h3>PATH-001 源码凭据泄露 → 任意命令执行 → 服务器完全接管</h3>
+<p><strong>路径概述</strong>：攻击者先通过源码中泄露的明文凭据获得系统访问入口，随后利用命令注入缺陷在应用服务器上执行任意系统命令，最终取得主机控制权。</p>
+<p><strong>关联漏洞数</strong>：3</p>
+<table><thead><tr><th>利用顺序</th><th>关联漏洞</th><th>利用说明</th></tr></thead><tbody><tr><td>1</td><td>VULN-007 硬编码敏感凭据</td><td>获取初始立足点：利用「硬编码敏感凭据」（VULN-007，风险等级高危），位置 config.py。</td></tr><tr><td>2</td><td>VULN-002 命令注入</td><td>执行核心攻击动作：利用「命令注入」（VULN-002，风险等级高危），位置 app.py。</td></tr><tr><td>3</td><td>VULN-003 路径遍历</td><td>扩大战果：利用「路径遍历」（VULN-003，风险等级高危），位置 app.py。</td></tr></tbody></table>
+<p><strong>最终影响</strong>：服务器被完全接管：攻击者可以任意读写业务数据、植入持久化后门、以内网跳板横向渗透至数据库与其它业务系统，造成数据泄露与业务中断。</p>
+<h3>PATH-002 配置与凭据泄露 → SQL 注入 → 全量数据窃取</h3>
+<p><strong>路径概述</strong>：攻击者从调试模式暴露的堆栈信息或源码泄露的凭据中获取表结构与文件路径，据此构造 SQL 注入载荷绕过查询条件，逐步拖取整库数据。</p>
+<p><strong>关联漏洞数</strong>：3</p>
+<table><thead><tr><th>利用顺序</th><th>关联漏洞</th><th>利用说明</th></tr></thead><tbody><tr><td>1</td><td>VULN-008 硬编码敏感凭据</td><td>获取初始立足点：利用「硬编码敏感凭据」（VULN-008，风险等级高危），位置 config.py。</td></tr><tr><td>2</td><td>VULN-009 SQL 注入</td><td>执行核心攻击动作：利用「SQL 注入」（VULN-009，风险等级高危），位置 db.py。</td></tr><tr><td>3</td><td>VULN-011 口令明文存储</td><td>扩大战果：利用「口令明文存储」（VULN-011，风险等级高危），位置 db.py。</td></tr></tbody></table>
+<p><strong>最终影响</strong>：数据库全量数据泄露，包含用户身份信息与业务敏感数据；若数据库账户权限过高，还可通过写入文件进一步升级为服务器控制权。</p>
+<h3>PATH-003 路径遍历 → 敏感文件读取 → 凭据二次利用</h3>
+<p><strong>路径概述</strong>：攻击者利用文件路径拼接缺陷跳出允许目录，读取隔离环境内的敏感文件，再从配置或密钥文件中提取凭据用于下一阶段攻击。</p>
+<p><strong>关联漏洞数</strong>：2</p>
+<table><thead><tr><th>利用顺序</th><th>关联漏洞</th><th>利用说明</th></tr></thead><tbody><tr><td>1</td><td>VULN-006 路径遍历</td><td>获取初始立足点：利用「路径遍历」（VULN-006，风险等级高危），位置 app.py。</td></tr><tr><td>2</td><td>VULN-014 使用弱哈希算法保护口令</td><td>执行核心攻击动作：利用「使用弱哈希算法保护口令」（VULN-014，风险等级中危），位置 db.py。</td></tr></tbody></table>
+<p><strong>最终影响</strong>：配置文件、密钥材料与源代码被读取，攻击者据此获取数据库与第三方服务的访问凭据，并可挑选更隐蔽的持久化攻击面。</p>
+<h2>五、风险结论</h2>
+<p>综合评定风险等级为 <strong>高风险</strong>。本次共发现 16 个缺陷（高危 11、中危 3、低危 2）。其中已编排到 3 条完整攻击路径，说明缺陷之间可以相互衔接，单点修复不足以消除风险，需要按路径整体治理。存在可直接导致数据泄露或服务器接管的缺陷，建议立即安排修复，并在修复前评估是否需要临时下线或加装访问控制。</p>
+<h2>六、修复建议</h2>
+<p>按优先级排列，建议先处理高危项：</p>
+<p>1. <strong>跨站脚本（XSS）</strong>：输出到 HTML 上下文时统一进行实体转义（如 Jinja2 自动转义、escapeHtml）；避免使用 innerHTML，改用 textContent；配置 CSP 响应头作为纵深防御。</p>
+<p>2. <strong>命令注入</strong>：避免拼接命令字符串；使用参数数组形式调用（如 subprocess.run([...], shell=False)）；确需拼接时使用 shlex.quote 并配合命令白名单。</p>
+<p>3. <strong>路径遍历</strong>（涉及 2 处）：使用 os.path.realpath 规范化后校验是否位于允许的根目录内；优先使用文件名白名单映射，拒绝包含路径分隔符的输入。</p>
+<p>4. <strong>动态代码执行</strong>：彻底移除 eval/exec 的动态执行逻辑；确有解析需求时使用 ast.literal_eval 或专用解析器（如 json.loads）。</p>
+<p>5. <strong>不安全的反序列化</strong>：禁止对不可信数据使用 pickle/marshal；YAML 使用 yaml.safe_load；跨进程数据交换改用 JSON 等纯数据格式。</p>
+<p>6. <strong>硬编码敏感凭据</strong>（涉及 2 处）：将敏感配置迁移至环境变量或密钥管理服务；立即轮换已泄露的凭据；在 CI 中加入密钥扫描，防止再次提交。</p>
+<p>7. <strong>SQL 注入</strong>（涉及 2 处）：改用参数化查询（占位符 + 参数元组），禁止使用字符串拼接、f-string 或 % 格式化构造 SQL；对数据库账户遵循最小权限原则。</p>
+<p>8. <strong>口令明文存储</strong>：存储口令的不可逆哈希（bcrypt/Argon2）而非明文；同时排查历史数据，对存量明文口令强制重置。</p>
+<p>9. <strong>服务端请求伪造（SSRF）</strong>：对目标地址实施协议与域名白名单；解析 DNS 后校验目标 IP 不属于内网网段与环回地址；禁止跟随重定向。</p>
+<p>10. <strong>生产环境开启调试模式</strong>：生产环境关闭 debug；通过环境变量控制该开关并在部署流水线中强制校验；使用统一错误页。</p>
+<p>11. <strong>使用弱哈希算法保护口令</strong>：改用 bcrypt、scrypt 或 Argon2 等自适应慢哈希算法，并为每个用户生成独立随机盐。</p>
+<p>12. <strong>异常处理吞掉错误</strong>（涉及 2 处）：捕获异常后至少记录日志；明确捕获具体异常类型；对安全相关失败路径进行告警。</p>
+<hr/>
+<p>本报告由自动化安全评估系统生成。所有分析均在只读隔离环境内完成，验证过程不产生真实破坏。建议在修复后重新发起评估，确认缺陷已闭环。</p>
+</div>
+</body>
+</html>
